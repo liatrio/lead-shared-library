@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Stage 1') {
             steps {
-                notifyPipelineStart()
+                notifyPipelineStart([Jenkinsfile: 'Jenkinsfile-sample'])
                 notifyStageStart()
                 echo "Stage 1"
             }

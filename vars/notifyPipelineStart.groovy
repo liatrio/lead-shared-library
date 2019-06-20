@@ -13,8 +13,9 @@ def call(params) {
 
     request.branch = env.BRANCH_NAME
 
-    def jenkinsfile = readFile file: "Jenkinsfile"
-    request.stageNames = getStageNames(jenkinsfile)
+    def Jenkinsfile = params.Jenkinsfile ? params.Jenkinsfile : 'Jenkinsfile'
+    def pipeline = readFile file: Jenkinsfile
+    request.stageNames = getStageNames(pipeline)
 
     def requestBody = JsonOutput.toJson(request)
     def url = (env.jenkinsOperator ? env.jenkinsOperator : "http://localhost:5555/notify-pipeline")
@@ -23,10 +24,10 @@ def call(params) {
     println('Response: (' + response.status + ') ' + response.content)
 }
 
-def getStageNames(jenkinsfile){
+def getStageNames(pipeline){
 
   def names = []
-  def lines = jenkinsfile.readLines()
+  def lines = pipeline.readLines()
 
   for (int i = 0; i < lines.size(); i++){
     def line = lines[i]
