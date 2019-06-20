@@ -18,7 +18,7 @@ def call(params) {
     request.stageNames = getStageNames(pipeline)
 
     def requestBody = JsonOutput.toJson(request)
-    def url = (env.jenkinsOperator ? env.jenkinsOperator : "http://localhost:5555/notify-pipeline")
+    def url = (env.PIPELINE_NOTIFY_URL ? env.PIPELINE_NOTIFY_URL : "http://localhost:5555/notify-pipeline")
 
     def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: requestBody, url: url
     println('Response: (' + response.status + ') ' + response.content)
