@@ -1,0 +1,55 @@
+library 'LEAD'
+pipeline {
+    agent any
+    stages {
+        stage('Stage 1') {
+            steps {
+                notifyPipelineStart([Jenkinsfile: 'Jenkinsfile-sample'])
+                notifyStageStart()
+                echo "Stage 1"
+            }
+            post {
+                success {
+                    echo "Stage 1 Success"
+                    sh "printenv | sort"
+                    notifyStageEnd()
+                }
+                failure {
+                    echo "Stage 1 Fail"
+                    sh "printenv | sort"
+                    notifyStageEnd([result: "fail"])
+                }
+            }
+        }
+        stage("Stage 2") {
+            steps {
+            notifyStageStart()
+                echo "Stage 2"
+            }
+            post {
+                success {
+                    echo "Stage 1 Success"
+                    sh "printenv | sort"
+                    notifyStageEnd()
+                }
+                failure {
+                    echo "Stage 1 Fail"
+                    sh "printenv | sort"
+                    notifyStageEnd([result: "fail"])
+                }
+            }
+        }
+    }
+    post {
+        success {
+            echo "Pipeline Success"
+            sh "printenv | sort"
+            notifyPipelineEnd()
+        }
+        failure {
+            echo "Pipeline Fail"
+            sh "printenv | sort"
+            notifyPipelineEnd([result: "fail"])
+        }
+    }
+}
