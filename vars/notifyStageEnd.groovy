@@ -15,7 +15,7 @@ def call(params) {
   request.result = params.result ? params.result : 'success'
 
   def requestBody = JsonOutput.toJson(request)
-  def url = (env.PIPELINE_NOTIFY_URL ? env.PIPELINE_NOTIFY_URL : "http://localhost:5555/notify-pipeline")
+  def url = 'http://operator-jenkins.' + env.toolchainNamespace + '.svc.cluster.local:3000/pipeline-status';
 
   def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: requestBody, url: url
   println('Response: (' + response.status + ') ' + response.content)
