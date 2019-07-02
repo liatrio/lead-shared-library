@@ -9,6 +9,7 @@ def call(params) {
     request.type = 'pipeline-start'
     request.product = env.product
     request.url = env.BUILD_URL
+    request.buildId = env.BUILD_ID
     request.gitUrl = env.GIT_URL
     request.gitCommit = env.GIT_COMMIT
     request.buildId = env.BUILD_ID
