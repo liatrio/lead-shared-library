@@ -14,6 +14,7 @@ def call(params) {
   request.branch = env.BRANCH_NAME
   request.stage = env.STAGE_NAME
   request.result = params.result ? params.result : 'success'
+  request.status = params.status ? params.status : ''
 
   def requestBody = JsonOutput.toJson(request)
   def url = 'http://operator-jenkins.' + env.toolchainNamespace + '.svc.cluster.local:3000/pipeline-status';
