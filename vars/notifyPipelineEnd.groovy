@@ -7,6 +7,7 @@ def call(params) {
     def request = params.request ? params.request : [:]
 
     request.type = 'pipeline-end'
+    request.product = env.product
     request.gitUrl = env.GIT_URL
     request.gitCommit = env.GIT_COMMIT
     request.buildId = env.BUILD_ID
