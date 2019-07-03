@@ -12,12 +12,10 @@ pipeline {
       post {
         success {
           echo "Build stage success"
-          // sh "printenv | sort"
           notifyStageEnd()
         }
         failure {
           echo "Build stage fail"
-          // sh "printenv | sort"
           notifyStageEnd([result: "fail"])
         }
       }
@@ -31,12 +29,10 @@ pipeline {
       post {
         success {
           echo "Testing stage success"
-          // sh "printenv | sort"
           notifyStageEnd([status: "Test run: 42, passed: 42, failed 0 https://www.sonarqube.org/"])
         }
         failure {
           echo "Testing stage fail"
-          // sh "printenv | sort"
           notifyStageEnd([result: "fail"])
         }
       }
@@ -50,12 +46,10 @@ pipeline {
       post {
         success {
           echo "Deploy stage success"
-          // sh "printenv | sort"
           notifyStageEnd()
         }
         failure {
           echo "Deploy stage fail"
-          // sh "printenv | sort"
           notifyStageEnd([result: "fail"])
         }
       }
@@ -64,12 +58,10 @@ pipeline {
   post {
     success {
       echo "Pipeline Success"
-      // sh "printenv | sort"
       notifyPipelineEnd()
     }
     failure {
       echo "Pipeline Fail"
-      // sh "printenv | sort"
       notifyPipelineEnd([result: "fail"])
     }
   }
