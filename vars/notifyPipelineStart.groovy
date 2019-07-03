@@ -7,6 +7,9 @@ def call(params) {
     def request = params.request ? params.request : [:]
 
     request.type = 'pipeline-start'
+    request.product = env.product
+    request.url = env.BUILD_URL
+    request.buildId = env.BUILD_ID
     request.gitUrl = env.GIT_URL
     request.gitCommit = env.GIT_COMMIT
     request.buildId = env.BUILD_ID
@@ -18,7 +21,7 @@ def call(params) {
     request.stageNames = getStageNames(pipeline)
 
     def requestBody = JsonOutput.toJson(request)
-    def url = (env.PIPELINE_NOTIFY_URL ? env.PIPELINE_NOTIFY_URL : "http://localhost:5555/notify-pipeline")
+    def url = 'http://operator-jenkins.' + env.toolchainNamespace + '.svc.cluster.local:3000/pipeline-status';
 
     def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: requestBody, url: url
     println('Response: (' + response.status + ') ' + response.content)
