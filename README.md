@@ -11,3 +11,4 @@ Jenkins shared library for LEAD architecture
 - **notifyPipelineEnd**: Notify end of pipeline
 - **notifyStageStart**: Notify stage start
 - **notifyStageEnd**: Notify stage end
+
