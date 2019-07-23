@@ -1,6 +1,4 @@
 import groovy.json.JsonOutput
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 def call(params) {
 
