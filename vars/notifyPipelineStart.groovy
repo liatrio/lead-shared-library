@@ -35,14 +35,13 @@ def call(params) {
 
     try {
       post.getOutputStream().write(requestBody.getBytes("UTF-8"));
+      def postRC = post.getResponseCode();
+      // println(postRC);
+      if(postRC.equals(200)) {
+          println('Response: (' + postRC + ') ' + post.getInputStream().getText());
+      }
     } catch(Exception ex) {
       println('Error sending request to endpoint: ' + ex);
-    }
-
-    def postRC = post.getResponseCode();
-    // println(postRC);
-    if(postRC.equals(200)) {
-        println('Response: (' + postRC + ') ' + post.getInputStream().getText());
     }
 }
 
