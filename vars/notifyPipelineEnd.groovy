@@ -21,7 +21,6 @@ def call(params) {
     post.setDoOutput(true);
     post.setConnectTimeout(5000);
     post.setReadTimeout(5000);
-    println('Read timeout: ' + post.getReadTimeout() + ', connect timeout: ' + post.getConnectTimeout());
     post.setRequestProperty("Content-Type", "application/json");
 
     try {
