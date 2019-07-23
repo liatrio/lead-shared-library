@@ -1,4 +1,6 @@
 import groovy.json.JsonOutput
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 def call(params) {
 
@@ -26,10 +28,12 @@ def call(params) {
     // def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: requestBody, url: url
 
     def post = new URL('http://operator-jenkins.' + env.toolchainNamespace + '.svc.cluster.local:3000/pipeline-status').openConnection();
-    post.setRequestMethod("POST")
-    post.setDoOutput(true)
-    post.setConnectTimeout(5000)
-    post.setRequestProperty("Content-Type", "application/json")
+    post.setRequestMethod('POST');
+    post.setDoOutput(true);
+    // post.setConnectTimeout(5000);
+    post.readTimeout(5000);
+    println('Read timeout: ' + post.getReadTimeout() + ', connect timeout: ' + post.getConnectTimeout());
+    post.setRequestProperty("Content-Type", "application/json");
     post.getOutputStream().write(requestBody.getBytes("UTF-8"));
     def postRC = post.getResponseCode();
     println(postRC);
