@@ -32,7 +32,13 @@ def call(params) {
     post.setReadTimeout(5000);
     println('Read timeout: ' + post.getReadTimeout() + ', connect timeout: ' + post.getConnectTimeout());
     post.setRequestProperty("Content-Type", "application/json");
-    post.getOutputStream().write(requestBody.getBytes("UTF-8"));
+
+    try {
+      post.getOutputStream().write(requestBody.getBytes("UTF-8"));
+    } catch(Exception ex) {
+      println('Error sending request to endpoint: ' + ex);
+    }
+
     def postRC = post.getResponseCode();
     // println(postRC);
     if(postRC.equals(200)) {
