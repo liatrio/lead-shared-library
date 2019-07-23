@@ -31,7 +31,7 @@ def call(params) {
     post.setRequestMethod('POST');
     post.setDoOutput(true);
     // post.setConnectTimeout(5000);
-    post.readTimeout(5000);
+    post.setReadTimeout(5000);
     println('Read timeout: ' + post.getReadTimeout() + ', connect timeout: ' + post.getConnectTimeout());
     post.setRequestProperty("Content-Type", "application/json");
     post.getOutputStream().write(requestBody.getBytes("UTF-8"));
