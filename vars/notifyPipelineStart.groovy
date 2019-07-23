@@ -30,13 +30,11 @@ def call(params) {
     post.setDoOutput(true);
     post.setConnectTimeout(5000);
     post.setReadTimeout(5000);
-    println('Read timeout: ' + post.getReadTimeout() + ', connect timeout: ' + post.getConnectTimeout());
     post.setRequestProperty("Content-Type", "application/json");
 
     try {
       post.getOutputStream().write(requestBody.getBytes("UTF-8"));
       def postRC = post.getResponseCode();
-      // println(postRC);
       if(postRC.equals(200)) {
           println('Response: (' + postRC + ') ' + post.getInputStream().getText());
       }
