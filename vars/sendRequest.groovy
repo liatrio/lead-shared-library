@@ -1,4 +1,5 @@
 def call(requestBody) {
+    println('inside requestBody here...');
     def url = 'http://operator-jenkins.' + env.toolchainNamespace + '.svc.cluster.local:3000/pipeline-status';
 
     def post = new URL('http://operator-jenkins.' + env.toolchainNamespace + '.svc.cluster.local:3000/pipeline-status').openConnection();
