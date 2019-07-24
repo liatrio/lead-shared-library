@@ -21,9 +21,7 @@ def call(params) {
     request.stageNames = getStageNames(pipeline)
 
     def requestBody = JsonOutput.toJson(request)
-    GroovyShell shell = new GroovyShell()
-    def req = shell.parse(new File('sendRequest.groovy'))
-    req.sendRequest(requestBody)
+    sendRequest(requestBody)
 }
 
 def getStageNames(pipeline){

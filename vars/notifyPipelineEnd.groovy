@@ -14,7 +14,5 @@ def call(params) {
     request.result = params.result ? params.result : 'success'
 
     def requestBody = JsonOutput.toJson(request)
-    GroovyShell shell = new GroovyShell()
-    def req = shell.parse(new File('sendRequest.groovy'))
-    req.sendRequest(requestBody)
+    sendRequest(requestBody)
 }

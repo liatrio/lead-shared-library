@@ -17,7 +17,5 @@ def call(params) {
   request.status = params.status ? params.status : ''
 
   def requestBody = JsonOutput.toJson(request)
-  GroovyShell shell = new GroovyShell()
-  def req = shell.parse(new File('sendRequest.groovy'))
-  req.sendRequest(requestBody)
+  sendRequest(requestBody)
 }

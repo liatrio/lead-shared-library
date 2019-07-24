@@ -17,5 +17,4 @@ def sendRequest(requestBody) {
     } catch(Exception ex) {
       println('Error sending request to endpoint: ' + ex);
     }
-
 }
