@@ -21,9 +21,7 @@ def call(params) {
     request.stageNames = getStageNames(pipeline)
 
     def requestBody = JsonOutput.toJson(request)
-    println('before requestBody here...');
     sendRequest(requestBody)
-    println('after requestBody here...');
 }
 
 def getStageNames(pipeline){
