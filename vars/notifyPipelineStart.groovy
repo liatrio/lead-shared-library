@@ -1,5 +1,6 @@
 import groovy.json.JsonOutput
-
+import groovy.json.JsonSlurper
+import groovy.json.JsonBuilder
 
 def call(params) {
     if (!params) params = [:]
@@ -20,7 +21,9 @@ def call(params) {
     def pipeline = readFile file: Jenkinsfile
     request.stageNames = getStageNames(pipeline)
 
-    request.committerList = getCommitters()
+    def tempReq = new JsonSlurper().parseText(request)
+    tempReq.put('committers', new JsonBuilder(getCommitters()));
+    request = tempReq
 
     def requestBody = JsonOutput.toJson(request)
     sendRequest(requestBody)
@@ -51,12 +54,4 @@ def getStageNames(pipeline){
   return names
 }
 
-def getCommitters(){
-  log = "git log -n 5".execute()
-  def emailLog  = log.text =~ /<(.*@.*)>/
-  List<String> userEmailList = new ArrayList<>()
-  for(email in emailLog){
-    userEmailList << email[1]
-  }
-  return userEmailList
-}
+
