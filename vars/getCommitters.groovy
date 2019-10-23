@@ -3,7 +3,8 @@ def call() {
   log.waitFor()
   println "printing log below:"
   println log
-  println log.text
+  println "printing log.text below:"
+  //println log.text
   def emailLog  = log.text =~ /<(.*@.*)>/
   List<String> userEmailList = new ArrayList<>()
   for(email in emailLog){
