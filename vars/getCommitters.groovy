@@ -1,4 +1,14 @@
 def call() {
+
+
+  def p = ['/bin/bash', '-c', git log -5 | cat].execute()
+  p.waitFor()
+  println p.text
+
+  println "p above"
+
+
+
   def log = "git log -5".execute() | "cat".execute()
   log.waitFor()
   println "printing log below:"
