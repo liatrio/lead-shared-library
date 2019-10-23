@@ -21,10 +21,8 @@ def call(params) {
     request.stageNames = getStageNames(pipeline)
 
     request.put('committers', new JsonBuilder(getCommitters()))
-
     def requestBody = JsonOutput.toJson(request)
 
-    println JsonOutput.prettyPrint(requestBody)
     sendRequest(requestBody)
 }
 
