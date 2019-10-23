@@ -1,5 +1,5 @@
 def call() {
-  log = "git log -n 5".execute()
+  def log = "git log -n 5".execute()
   def emailLog  = log.text =~ /<(.*@.*)>/
   List<String> userEmailList = new ArrayList<>()
   for(email in emailLog){
