@@ -26,6 +26,8 @@ def call(params) {
     request = tempReq
 
     def requestBody = JsonOutput.toJson(request)
+
+    println requestBody
     sendRequest(requestBody)
 }
 
