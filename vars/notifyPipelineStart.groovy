@@ -22,7 +22,7 @@ def call(params) {
 
     request.put('committers', new JsonBuilder(getCommitters()))
     def requestBody = JsonOutput.toJson(request)
-
+    println JsonOutput.prettyPrint(requestBody)
     sendRequest(requestBody)
 }
 
@@ -58,5 +58,5 @@ def getCommitters() {
   for(email in emailLog){
     userEmailList << email[1]
   }
-  return userEmailList
+  return userEmailList.unique()
 }
