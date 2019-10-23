@@ -28,7 +28,6 @@ def call(params) {
     def requestBody = JsonOutput.toJson(request)
 
     println requestBody
-    echo "$requestBody"
     sendRequest(requestBody)
 }
 
