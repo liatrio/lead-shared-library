@@ -5,10 +5,7 @@ def call() {
 //  log.waitFor()
   println "printing log below:"
   println log
-  println "printing log.text below:"
-  def var = log.text
-  println var
-  def emailLog  = var =~ /<(.*@.*)>/
+  def emailLog  = log =~ /<(.*@.*)>/
   List<String> userEmailList = new ArrayList<>()
   for(email in emailLog){
     userEmailList << email[1]
