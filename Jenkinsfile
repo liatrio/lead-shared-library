@@ -5,7 +5,12 @@ pipeline {
     stage('Build Stage') {
       steps {
         sh "git config -l | cat"
+
+        sh "git log -5 | cat"
+
         checkout scm
+
+        sh "git log -5 | cat"
 
         notifyPipelineStart()
         notifyStageStart()
