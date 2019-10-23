@@ -21,24 +21,11 @@ def call(params) {
     def pipeline = readFile file: Jenkinsfile
     request.stageNames = getStageNames(pipeline)
 
-    println request.getClass()
-
-    println "getCommitters() below:"
-    def output = getCommitters()
-    println output
-    println getCommitters()
-    println "getCommitters() finished"
-
     request.put('committers', new JsonBuilder(getCommitters()))
-
-    //def tempReq = new JsonSlurper().parseText(request)
-    //tempReq.put('committers', new JsonBuilder(getCommitters()))
-    //request = tempReq
 
     def requestBody = JsonOutput.toJson(request)
 
     println JsonOutput.prettyPrint(requestBody)
-    //println requestBody
     sendRequest(requestBody)
 }
 
