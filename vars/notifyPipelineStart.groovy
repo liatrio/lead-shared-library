@@ -31,7 +31,8 @@ def call(params) {
 
     def requestBody = JsonOutput.toJson(request)
 
-    println requestBody
+    println JsonOutput.prettyPrint(requestBody)
+    //println requestBody
     sendRequest(requestBody)
 }
 
