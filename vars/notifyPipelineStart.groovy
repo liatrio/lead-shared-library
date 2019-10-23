@@ -21,6 +21,8 @@ def call(params) {
     def pipeline = readFile file: Jenkinsfile
     request.stageNames = getStageNames(pipeline)
 
+    println request.getClass()
+
     def tempReq = new JsonSlurper().parseText(request)
     tempReq.put('committers', new JsonBuilder(getCommitters()));
     request = tempReq
