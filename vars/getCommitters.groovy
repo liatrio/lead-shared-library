@@ -1,5 +1,6 @@
 def call() {
   def log = "git log -5".execute()
+  log.waitFor()
   println "printing log below:"
   println log
   def emailLog  = log.text =~ /<(.*@.*)>/
