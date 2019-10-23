@@ -24,6 +24,8 @@ def call(params) {
     println request.getClass()
 
     println "getCommitters() below:"
+    def output = getCommitters()
+    println output
     println getCommitters()
     println "getCommitters() finished"
 
