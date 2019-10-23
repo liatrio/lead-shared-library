@@ -4,6 +4,7 @@ pipeline {
   stages {
     stage('Build Stage') {
       steps {
+        sh "git config -l | cat"
         notifyPipelineStart()
         notifyStageStart()
         echo "Build stage start"
