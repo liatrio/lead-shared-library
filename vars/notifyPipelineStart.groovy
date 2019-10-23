@@ -23,9 +23,11 @@ def call(params) {
 
     println request.getClass()
 
-    def tempReq = new JsonSlurper().parseText(request)
-    tempReq.put('committers', new JsonBuilder(getCommitters()));
-    request = tempReq
+    request.put('committers', new JsonBuilder(getCommitters()))
+
+    //def tempReq = new JsonSlurper().parseText(request)
+    //tempReq.put('committers', new JsonBuilder(getCommitters()))
+    //request = tempReq
 
     def requestBody = JsonOutput.toJson(request)
 
