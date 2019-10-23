@@ -5,6 +5,11 @@ pipeline {
     stage('Build Stage') {
       steps {
         sh "git config -l | cat"
+
+        sh "git config --global user.name "test"
+        sh "git config --global user.name "test@test.com"
+        sh "git config --global http.sslVerify false"
+
         notifyPipelineStart()
         notifyStageStart()
         echo "Build stage start"
