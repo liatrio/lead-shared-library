@@ -23,6 +23,10 @@ def call(params) {
 
     println request.getClass()
 
+    println "getCommitters() below:"
+    println getCommitters()
+    println "getCommitters() finished"
+
     request.put('committers', new JsonBuilder(getCommitters()))
 
     //def tempReq = new JsonSlurper().parseText(request)
