@@ -1,5 +1,6 @@
 def call() {
   def log = "git --no-pager log -5".execute()
+  log.waitFor()
   println "printing log below:"
   println log
   println "printing log.text below:"
