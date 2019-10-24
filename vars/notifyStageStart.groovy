@@ -10,6 +10,7 @@ def call(params) {
   request.product = env.product
   request.gitUrl = env.GIT_URL
   request.gitCommit = env.GIT_COMMIT
+  request.commitMessage = sh (script: "git log -1 | sed -n '5p'", returnStatus: true)
   request.buildId = env.BUILD_ID
   request.branch = env.BRANCH_NAME
   request.stage = env.STAGE_NAME
