@@ -19,8 +19,9 @@ def call(params) {
     def Jenkinsfile = params.Jenkinsfile ? params.Jenkinsfile : 'Jenkinsfile'
     def pipeline = readFile file: Jenkinsfile
     request.stageNames = getStageNames(pipeline)
+    
+    request.committers = getCommitters()
 
-    request.put('committers', new JsonBuilder(getCommitters()))
     def requestBody = JsonOutput.toJson(request)
     println JsonOutput.prettyPrint(requestBody)
     sendRequest(requestBody)
