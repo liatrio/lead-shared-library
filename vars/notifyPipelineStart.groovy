@@ -22,6 +22,7 @@ def call(params) {
 
     request.put('committers', new JsonBuilder(getCommitters()))
     def requestBody = JsonOutput.toJson(request)
+    println JsonOutput.prettyPrint(requestBody)
     sendRequest(requestBody)
 }
 
