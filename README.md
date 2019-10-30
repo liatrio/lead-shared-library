@@ -1,5 +1,5 @@
 # lead-shared-library
-Jenkins shared library for LEAD architecture
+Jenkins shared library for LEAD architecture.
 
 ## Environment Variables
 
