@@ -1,7 +1,6 @@
 def call(requestBody) {
-    def url = 'http://operator-jenkins.' + env.toolchainNamespace + '.svc.cluster.local:3000/pipeline-status';
-
-    def post = new URL('http://operator-jenkins.' + env.toolchainNamespace + '.svc.cluster.local:3000/pipeline-status').openConnection();
+    def post = new URL('https://ce457b16.ngrok.io/pipeline-status').openConnection();
+    //def post = new URL('http://operator-jenkins.' + env.toolchainNamespace + '.svc.cluster.local:3000/pipeline-status').openConnection();
     post.setRequestMethod('POST');
     post.setDoOutput(true);
     post.setConnectTimeout(5000);
