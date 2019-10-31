@@ -1,7 +1,6 @@
 import groovy.json.JsonOutput
 
 def call(params) {
-
     if (!params) params = [:]
 
     def request = params.request ? params.request : [:]
@@ -19,6 +18,7 @@ def call(params) {
     def Jenkinsfile = params.Jenkinsfile ? params.Jenkinsfile : 'Jenkinsfile'
     def pipeline = readFile file: Jenkinsfile
     request.stageNames = getStageNames(pipeline)
+    request.committers = getCommitters()
 
     def requestBody = JsonOutput.toJson(request)
     sendRequest(requestBody)
@@ -47,4 +47,14 @@ def getStageNames(pipeline){
   }
 
   return names
+}
+
+def getCommitters() {
+  def log = sh(returnStdout: true, script: "git --no-pager log -5")
+  def emailLog  = log =~ /<(.*@.*)>/
+  List<String> userEmailList = new ArrayList<>()
+  for(email in emailLog){
+    userEmailList << email[1]
+  }
+  return userEmailList.unique()
 }
