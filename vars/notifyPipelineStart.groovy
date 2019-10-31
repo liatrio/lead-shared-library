@@ -1,5 +1,4 @@
 import groovy.json.JsonOutput
-import groovy.json.JsonBuilder
 
 def call(params) {
     if (!params) params = [:]
