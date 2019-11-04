@@ -56,5 +56,5 @@ def getCommitters() {
   for(email in emailLog){
     userEmailList << email[1]
   }
-  return userEmailList.unique().slice(0,5)
+  return userEmailList.unique()[0..5]
 }
