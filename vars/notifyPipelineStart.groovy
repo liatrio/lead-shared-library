@@ -50,7 +50,7 @@ def getStageNames(pipeline){
 }
 
 def getCommitters() {
-  def log = sh(returnStdout: true, script: "git --no-pager log master..")
+  def log = sh(returnStdout: true, script: "git --no-pager log origin/master..")
   def emailLog  = log =~ /<(.*@.*)>/
   List<String> userEmailList = new ArrayList<>()
   for(email in emailLog){
